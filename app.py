@@ -35,40 +35,40 @@ def gerar_jogo_avancado():
 # --- INTERFACE ---
 st.set_page_config(page_title="Mega da Virada 2025", page_icon="🍀")
 
-# Estilo CSS para as bolinhas
+# Estilo CSS para as bolinhas e o painel de preço
 st.markdown("""
     <style>
     .bola {
         display: inline-block;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
+        width: 38px;
+        height: 38px;
+        line-height: 38px;
         border-radius: 50%;
         background-color: #209869;
         color: white;
         text-align: center;
         font-weight: bold;
-        margin: 5px;
-        font-size: 18px;
+        margin: 4px;
+        font-size: 16px;
         box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     }
     .container-jogo {
         padding: 10px;
         border-bottom: 1px solid #eee;
     }
+    .preco-total {
+        background-color: #f0f2f6;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 5px solid #209869;
+        margin-bottom: 20px;
+    }
     </style>
     """, unsafe_allow_html=True)
 
 st.title("🍀 Mega da Virada 2025")
-st.write("Gerador inteligente com filtros estatísticos.")
 
-qtd = st.sidebar.slider("Quantos jogos gerar?", 1, 50, 5)
-
-if st.button("GERAR APOSTAS AGORA"):
-    for i in range(qtd):
-        jogo, soma = gerar_jogo_avancado()
-
-        # Sidebar
+# Sidebar
 st.sidebar.header("Configurações")
 qtd = st.sidebar.slider("Quantos jogos gerar?", 1, 100, 5)
 preco_unidade = 5.00
@@ -82,8 +82,10 @@ st.markdown(f"""
         <span style="font-size: 20px; color: #209869;"><strong>Total a pagar: R$ {total_pago:,.2f}</strong></span>
     </div>
 """, unsafe_allow_html=True)
-        
-        # Criando as bolinhas em HTML
+
+if st.button("GERAR APOSTAS AGORA"):
+    for i in range(qtd):
+        jogo, soma = gerar_jogo_avancado()
         bolinhas_html = "".join([f'<div class="bola">{n:02d}</div>' for n in jogo])
         
         st.markdown(f"""
@@ -95,4 +97,4 @@ st.markdown(f"""
     
     st.balloons()
 
-st.sidebar.info("Os filtros evitam sequências longas e repetem o balanço 3 pares / 3 ímpares.")
+st.info("Regras aplicadas: Balanço 3P/3Í, Soma entre 150-220 e Filtro de repetidos.")

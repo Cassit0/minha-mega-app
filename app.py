@@ -1,16 +1,14 @@
 import streamlit as st
 import random
 import pandas as pd
-from datetime import datetime
 
-# --- CONFIGURAÇÃO: É AQUI QUE ATUALIZAS OS NÚMEROS ---
-# Substitui estes números pelos sorteios mais recentes quando quiseres
+# --- CONFIGURAÇÃO ATUALIZADA (20/12/2025) ---
 ultimos_5_sorteios = [
-    [4, 11, 23, 34, 44, 58], # Concurso 2809
-    [5, 12, 25, 28, 36, 57], # Concurso 2808
-    [1, 4, 10, 22, 53, 54],  # Concurso 2807
-    [18, 20, 30, 32, 33, 50],
-    [2, 12, 28, 36, 45, 59]
+    [6, 7, 28, 41, 45, 54], # Concurso 2954
+    [1, 12, 33, 41, 45, 59], # Concurso 2953
+    [8, 12, 19, 41, 45, 49], # Concurso 2952
+    [10, 22, 34, 44, 51, 60], # Concurso 2951
+    [4, 15, 23, 33, 42, 50]   # Concurso 2950
 ]
 
 def possui_sequencia_longa(jogo, limite=2):
@@ -23,45 +21,63 @@ def possui_sequencia_longa(jogo, limite=2):
     return False
 
 def gerar_jogo_avancado():
-    # Cria uma lista de todos os números que saíram recentemente
     numeros_viciados = set([n for sorteio in ultimos_5_sorteios for n in sorteio])
     todos = list(range(1, 61))
     pares = [n for n in todos if n % 2 == 0]
     impares = [n for n in todos if n % 2 != 0]
-
     while True:
-        # Tenta equilibrar 3 pares e 3 ímpares
         jogo = random.sample(pares, 3) + random.sample(impares, 3)
         jogo.sort()
-        
-        # Filtros: Soma ideal, Sem sequências longas e números novos
-        if (150 <= sum(jogo) <= 220) and \
-           not possui_sequencia_longa(jogo) and \
+        if (150 <= sum(jogo) <= 220) and not possui_sequencia_longa(jogo) and \
            len([n for n in jogo if n not in numeros_viciados]) >= 3:
             return jogo, sum(jogo)
 
-# --- INTERFACE STREAMLIT ---
-st.set_page_config(page_title="Mega da Virada Estratégica", page_icon="🍀")
+# --- INTERFACE ---
+st.set_page_config(page_title="Mega da Virada 2025", page_icon="🍀")
 
-st.title("🍀 Gerador Mega da Virada")
-st.markdown("Este app gera jogos equilibrando **Pares/Ímpares**, **Somas** e evitando números muito repetidos.")
+# Estilo CSS para as bolinhas
+st.markdown("""
+    <style>
+    .bola {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        background-color: #209869;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        margin: 5px;
+        font-size: 18px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+    .container-jogo {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-# Menu lateral
-st.sidebar.header("Configurações")
-qtd = st.sidebar.slider("Quantos jogos queres?", 1, 50, 5)
+st.title("🍀 Mega da Virada 2025")
+st.write("Gerador inteligente com filtros estatísticos.")
+
+qtd = st.sidebar.slider("Quantos jogos gerar?", 1, 50, 5)
 
 if st.button("GERAR APOSTAS AGORA"):
-    jogos_lista = []
     for i in range(qtd):
-        num, soma = gerar_jogo_avancado()
-        jogos_lista.append({"Jogo": i+1, "Números": " - ".join(map(str, num)), "Soma": soma})
+        jogo, soma = gerar_jogo_avancado()
+        
+        # Criando as bolinhas em HTML
+        bolinhas_html = "".join([f'<div class="bola">{n:02d}</div>' for n in jogo])
+        
+        st.markdown(f"""
+            <div class="container-jogo">
+                <strong>Jogo {i+1}</strong> (Soma: {soma})<br>
+                {bolinhas_html}
+            </div>
+        """, unsafe_allow_html=True)
     
-    # Exibe os resultados numa tabela bonita
-    df = pd.DataFrame(jogos_lista)
-    st.table(df)
-    
-    st.success(f"Foram gerados {qtd} jogos com sucesso!")
     st.balloons()
 
-st.info("Dica: Atualiza os 'ultimos_5_sorteios' no GitHub para manter o app calibrado!")
-st.info("Se deixar de ser diversão, PARE!!")
+st.sidebar.info("Os filtros evitam sequências longas e repetem o balanço 3 pares / 3 ímpares.")

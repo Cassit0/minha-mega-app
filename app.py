@@ -4,10 +4,10 @@ import pandas as pd
 
 # --- CONFIGURAÇÃO ATUALIZADA (20/12/2025) ---
 ultimos_5_sorteios = [
-    [6, 7, 28, 41, 45, 54], # Concurso 2954
+    [16, 17, 18, 40, 45, 54], # Concurso 2954
     [1, 12, 33, 41, 45, 59], # Concurso 2953
-    [8, 12, 19, 41, 45, 49], # Concurso 2952
-    [10, 22, 34, 44, 51, 60], # Concurso 2951
+    [18, 12, 19, 41, 15, 29], # Concurso 2952
+    [11, 22, 34, 44, 51, 16], # Concurso 2951
     [4, 15, 23, 33, 42, 50]   # Concurso 2950
 ]
 

@@ -78,7 +78,7 @@ total_pago = qtd * preco_unidade
 st.markdown(f"""
     <div class="preco-total">
         <span style="font-size: 20px; color: #209869;"><strong>Resumo do Investimento:</strong></span><br>
-        Quantidade: {qtd} jogos<br>
+        <span style="font-size: 20px; color: #E2024C;">Quantidade: {qtd} jogos</span><br>
         <span style="font-size: 20px; color: #209869;"><strong>Total a pagar: R$ {total_pago:,.2f}</strong></span>
     </div>
 """, unsafe_allow_html=True)

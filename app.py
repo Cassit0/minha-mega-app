@@ -67,6 +67,21 @@ qtd = st.sidebar.slider("Quantos jogos gerar?", 1, 50, 5)
 if st.button("GERAR APOSTAS AGORA"):
     for i in range(qtd):
         jogo, soma = gerar_jogo_avancado()
+
+        # Sidebar
+st.sidebar.header("Configurações")
+qtd = st.sidebar.slider("Quantos jogos gerar?", 1, 100, 5)
+preco_unidade = 5.00
+total_pago = qtd * preco_unidade
+
+# Exibe o valor total logo no topo para facilitar
+st.markdown(f"""
+    <div class="preco-total">
+        <strong>Resumo do Investimento:</strong><br>
+        Quantidade: {qtd} jogos<br>
+        <span style="font-size: 20px; color: #209869;"><strong>Total a pagar: R$ {total_pago:,.2f}</strong></span>
+    </div>
+""", unsafe_allow_html=True)
         
         # Criando as bolinhas em HTML
         bolinhas_html = "".join([f'<div class="bola">{n:02d}</div>' for n in jogo])

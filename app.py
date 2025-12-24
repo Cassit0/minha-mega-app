@@ -71,7 +71,7 @@ st.title("🍀 Mega da Virada 2025")
 # Sidebar
 st.sidebar.header("Configurações")
 qtd = st.sidebar.slider("Quantos jogos gerar?", 1, 100, 5)
-preco_unidade = 5.00
+preco_unidade = 6.00
 total_pago = qtd * preco_unidade
 
 # Exibe o valor total logo no topo para facilitar

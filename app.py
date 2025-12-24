@@ -64,3 +64,4 @@ if st.button("GERAR APOSTAS AGORA"):
     st.balloons()
 
 st.info("Dica: Atualiza os 'ultimos_5_sorteios' no GitHub para manter o app calibrado!")
+st.info("Se deixar de ser diversão, PARE!!")

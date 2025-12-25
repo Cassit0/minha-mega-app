@@ -34,7 +34,7 @@ def gerar_jogo_avancado():
 
 # --- INTERFACE ---
 st.markdown("Gerador de apostas baseado em **estatística e balanço**.")
-st.set_page_config(page_title="Mega da Virada 2025", page_icon="🍀")
+#st.set_page_config(page_title="Mega da Virada 2025", page_icon="🍀")
 
 
 # Estilo CSS para as bolinhas e o painel de preço

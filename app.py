@@ -34,7 +34,6 @@ def gerar_jogo_avancado():
 
 # --- INTERFACE ---
 st.set_page_config(page_title="Mega da Virada 2025", page_icon="🍀")
-st.markdown("Gerador de apostas baseado em **estatística e balanço**.")
 
 # Estilo CSS para as bolinhas e o painel de preço
 st.markdown("""
@@ -85,7 +84,6 @@ texto_resumo = f"""
     <span style="font-size: 20px; color: #529FF7;"><strong>Total a pagar: R$ {total_pago:,.2f}</strong></span>
 </div>
 """
-
 # Mandando o Streamlit renderizar o HTML
 st.markdown(texto_resumo, unsafe_allow_html=True)
 

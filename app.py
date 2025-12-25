@@ -77,12 +77,17 @@ total_pago = qtd * preco_unidade
 
 # Exibe o valor total logo no topo para facilitar
 st.markdown(f"""
-    <div class="preco-total">
-        <span style="font-size: 20px; color: #529FF7;"><strong>Resumo do Investimento:</strong></span><br>
-        <span style="font-size: 20px; color: #52F7AD;">Quantidade: {qtd} jogos</span><br>
-        <span style="font-size: 20px; color: #529FF7;"><strong>Total a pagar: R$ {total_pago:,.2f}</strong></span>
-    </div>
-""", unsafe_allow_html=True)
+   # Criando a string com o HTML
+texto_resumo = f"""
+<div style="line-height: 1.6;">
+    <span style="font-size: 20px; color: #529FF7;"><strong>Resumo do Investimento:</strong></span><br>
+    <span style="font-size: 20px; color: #52F7AD;">Quantidade: {qtd} jogos</span><br>
+    <span style="font-size: 20px; color: #529FF7;"><strong>Total a pagar: R$ {total_pago:,.2f}</strong></span>
+</div>
+"""
+
+# Mandando o Streamlit renderizar o HTML
+st.markdown(texto_resumo, unsafe_allow_html=True)
 
 if st.button("GERAR APOSTAS AGORA"):
     for i in range(qtd):

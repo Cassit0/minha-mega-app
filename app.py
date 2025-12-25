@@ -71,22 +71,17 @@ st.title("🍀 Mega da Virada 2025")
 # Sidebar
 st.sidebar.header("Configurações")
 qtd = st.sidebar.slider("Quantos jogos gerar?", 1, 100, 5)
-preco_unidade = 6.00
+preco_unidade = 5.00
 total_pago = qtd * preco_unidade
 
 # Exibe o valor total logo no topo para facilitar
 st.markdown(f"""
-   # Criando a string com o HTML
-   
-# Verifique se 'qtd' e 'total_pago' foram calculados antes desta linha!
-resumo_html = f"""
-    <div style="padding: 10px; border-radius: 5px; line-height: 1.5;">
-        <b style="color: #529FF7; font-size: 20px;">Resumo do Investimento:</b><br>
-        <span style="color: #52F7AD; font-size: 18px;">Quantidade: {qtd} jogos</span><br>
-        <b style="color: #529FF7; font-size: 20px;">Total a pagar: R$ {total_pago:,.2f}</b>
+    <div class="preco-total">
+        <strong>Resumo do Investimento:</strong><br>
+        Quantidade: {qtd} jogos<br>
+        <span style="font-size: 20px; color: #209869;"><strong>Total a pagar: R$ {total_pago:,.2f}</strong></span>
     </div>
-"""
-st.markdown(resumo_html, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 if st.button("GERAR APOSTAS AGORA"):
     for i in range(qtd):

@@ -34,6 +34,7 @@ def gerar_jogo_avancado():
 
 # --- INTERFACE ---
 st.set_page_config(page_title="Mega da Virada 2025", page_icon="🍀")
+st.markdown("Gerador de apostas baseado em **estatística e balanço**.")
 
 # Estilo CSS para as bolinhas e o painel de preço
 st.markdown("""
@@ -77,9 +78,9 @@ total_pago = qtd * preco_unidade
 # Exibe o valor total logo no topo para facilitar
 st.markdown(f"""
     <div class="preco-total">
-        <span style="font-size: 20px; color: #209869;"><strong>Resumo do Investimento:</strong></span><br>
-        <span style="font-size: 20px; color: #E2024C;">Quantidade: {qtd} jogos</span><br>
-        <span style="font-size: 20px; color: #209869;"><strong>Total a pagar: R$ {total_pago:,.2f}</strong></span>
+        <span style="font-size: 20px; color: #529FF7;"><strong>Resumo do Investimento:</strong></span><br>
+        <span style="font-size: 20px; color: #52F7AD;">Quantidade: {qtd} jogos</span><br>
+        <span style="font-size: 20px; color: #529FF7;"><strong>Total a pagar: R$ {total_pago:,.2f}</strong></span>
     </div>
 """, unsafe_allow_html=True)
 
